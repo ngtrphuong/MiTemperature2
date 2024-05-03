@@ -44,9 +44,9 @@ def watchDog_Thread():
 	global pid
 	while True:
 		logging.debug("watchdog_Thread")
-		logging.debug("unconnectedTime : " + str(unconnectedTime))
-		logging.debug("connected : " + str(connected))
-		logging.debug("pid : " + str(pid))
+		logging.debug("unconnectedTime : %s", str(unconnectedTime))
+		logging.debug("connected : %s", str(connected))
+		logging.debug("pid : %s", str(pid))
 		now = int(time.time())
 		if (unconnectedTime is not None) and ((now - unconnectedTime) > 60): #could also check connected is False, but this is more fault proof
 			pstree=os.popen("pstree -p " + str(pid)).read() #we want to kill only bluepy from our own process tree, because other python scripts have there own bluepy-helper process
@@ -56,7 +56,7 @@ def watchDog_Thread():
 			except IndexError: #Should not happen since we're now connected
 				logging.debug("Couldn't find pid of bluepy-helper")
 			os.system("kill " + bluepypid)
-			logging.debug("Killed bluepy with pid: " + str(bluepypid))
+			logging.debug("Killed bluepy with pid: %s", str(bluepypid))
 			unconnectedTime = now #reset unconnectedTime to prevent multiple killings in a row
 		time.sleep(5)
 	
@@ -317,7 +317,7 @@ while True:
 					logging.debug("Couldn't find pid of bluepy-helper")
 				if bluepypid != 0:
 					os.system("kill " + bluepypid)
-					logging.debug("Killed bluepy with pid: " + str(bluepypid))
+					logging.debug("Killed bluepy with pid: %s", str(bluepypid))
 				os._exit(0)
 			print("")
 			continue
