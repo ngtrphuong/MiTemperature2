@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 
-import os
-import re
-import requests
-import time
 import sys
+from security import safe_requests
 
 domoticzserver = "192.168.1.36"
 idx_temp = "52"
@@ -21,8 +18,7 @@ elif float(val_hum) <= 70:
 elif float(val_hum) > 70:
     val_comfort = "3"
 
-res = requests.get(
-    "http://"
+res = safe_requests.get("http://"
     + domoticzserver
     + "/json.htm?type=command&param=udevice&idx="
     + idx_temp
