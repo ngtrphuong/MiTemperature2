@@ -27,8 +27,8 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(temperaturedeviceid)
     + "&serviceId=urn:upnp-org:serviceId:TemperatureSensor1&Variable=CurrentTemperature&Value="
-    + str(temperature)
-)
+    + str(temperature), 
+timeout=60)
 
 # send timestamp
 res = requests.get(
@@ -39,8 +39,8 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(temperaturedeviceid)
     + "&serviceId=urn:micasaverde-com:serviceId:HaDevice1&Variable=LastUpdate&Value="
-    + str(int(time.time()))
-)
+    + str(int(time.time())), 
+timeout=60)
 
 # send humidity value
 res = requests.get(
@@ -51,8 +51,8 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(humiditydeviceid)
     + "&serviceId=urn:micasaverde-com:serviceId:HumiditySensor1&Variable=CurrentLevel&Value="
-    + str(humidity)
-)
+    + str(humidity), 
+timeout=60)
 
 # change update timestamp
 res = requests.get(
@@ -63,8 +63,8 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(humiditydeviceid)
     + "&serviceId=urn:micasaverde-com:serviceId:HaDevice1&Variable=LastUpdate&Value="
-    + str(int(time.time()))
-)
+    + str(int(time.time())), 
+timeout=60)
 
 # send batterylevel to temp and humidity virtual sensors
 res = requests.get(
@@ -75,8 +75,8 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(temperaturedeviceid)
     + "&serviceId=urn:micasaverde-com:serviceId:HaDevice1&Variable=BatteryLevel&Value="
-    + str(batterylevel)
-)
+    + str(batterylevel), 
+timeout=60)
 res = requests.get(
     "http://"
     + veraip
@@ -85,5 +85,5 @@ res = requests.get(
     + "/data_request?id=variableset&DeviceNum="
     + str(humiditydeviceid)
     + "&serviceId=urn:micasaverde-com:serviceId:HaDevice1&Variable=BatteryLevel&Value="
-    + str(batterylevel)
-)
+    + str(batterylevel), 
+timeout=60)
