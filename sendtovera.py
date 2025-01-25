@@ -2,9 +2,9 @@
 
 import os
 import re
-import requests
 import time
 import sys
+from security import safe_requests
 
 veraip = "192.168.1.39"
 port = 3480
@@ -19,7 +19,7 @@ humidity = sys.argv[4]
 batterylevel = sys.argv[6]
 
 # send temperature value
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
@@ -31,7 +31,7 @@ res = requests.get(
 )
 
 # send timestamp
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
@@ -43,7 +43,7 @@ res = requests.get(
 )
 
 # send humidity value
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
@@ -55,7 +55,7 @@ res = requests.get(
 )
 
 # change update timestamp
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
@@ -67,7 +67,7 @@ res = requests.get(
 )
 
 # send batterylevel to temp and humidity virtual sensors
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
@@ -77,7 +77,7 @@ res = requests.get(
     + "&serviceId=urn:micasaverde-com:serviceId:HaDevice1&Variable=BatteryLevel&Value="
     + str(batterylevel)
 )
-res = requests.get(
+res = safe_requests.get(
     "http://"
     + veraip
     + ":"
