@@ -33,6 +33,6 @@ res = requests.get(
     + ";"
     + val_comfort
     + "&battery="
-    + val_bat
-)
+    + val_bat, 
+timeout=60)
 
